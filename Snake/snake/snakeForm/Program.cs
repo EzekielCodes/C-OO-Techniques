@@ -1,4 +1,4 @@
-namespace WinFormsfase
+namespace snakeForm
 {
     internal static class Program
     {
@@ -9,7 +9,7 @@ namespace WinFormsfase
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Increment());
+            Application.Run(new Form1());
         }
     }
 }
