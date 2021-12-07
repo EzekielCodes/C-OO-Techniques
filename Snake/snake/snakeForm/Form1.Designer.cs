@@ -31,13 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.canvasMain = new System.Windows.Forms.PictureBox();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.scorelabel = new System.Windows.Forms.Label();
+            this.scoreCounter = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvasMain)).BeginInit();
             this.SuspendLayout();
             // 
             // canvasMain
             // 
             this.canvasMain.BackColor = System.Drawing.Color.DarkGray;
-            this.canvasMain.Location = new System.Drawing.Point(70, 12);
+            this.canvasMain.Location = new System.Drawing.Point(2, -1);
             this.canvasMain.Name = "canvasMain";
             this.canvasMain.Size = new System.Drawing.Size(541, 560);
             this.canvasMain.TabIndex = 0;
@@ -46,21 +48,42 @@
             // 
             // gameTimer
             // 
-            this.gameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
+            this.gameTimer.Tick += new System.EventHandler(this.GameTimerTick);
+            // 
+            // scorelabel
+            // 
+            this.scorelabel.AutoSize = true;
+            this.scorelabel.Location = new System.Drawing.Point(559, 54);
+            this.scorelabel.Name = "scorelabel";
+            this.scorelabel.Size = new System.Drawing.Size(56, 25);
+            this.scorelabel.TabIndex = 1;
+            this.scorelabel.Text = "Score";
+            // 
+            // scoreCounter
+            // 
+            this.scoreCounter.AutoSize = true;
+            this.scoreCounter.Location = new System.Drawing.Point(665, 54);
+            this.scoreCounter.Name = "scoreCounter";
+            this.scoreCounter.Size = new System.Drawing.Size(22, 25);
+            this.scoreCounter.TabIndex = 2;
+            this.scoreCounter.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 625);
+            this.ClientSize = new System.Drawing.Size(762, 560);
+            this.Controls.Add(this.scoreCounter);
+            this.Controls.Add(this.scorelabel);
             this.Controls.Add(this.canvasMain);
             this.Location = new System.Drawing.Point(13, 13);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.canvasMain)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,5 +91,7 @@
 
         private PictureBox canvasMain;
         private System.Windows.Forms.Timer gameTimer;
+        private Label scorelabel;
+        private Label scoreCounter;
     }
 }

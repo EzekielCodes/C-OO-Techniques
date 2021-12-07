@@ -1,3 +1,4 @@
+using snakeForm.logica;
 namespace snakeForm
 {
     internal static class Program
@@ -8,8 +9,10 @@ namespace snakeForm
         [STAThread]
         static void Main()
         {
+            
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            var game = new Game();
+            Application.Run(new Form1(game));
         }
     }
 }
