@@ -54,11 +54,9 @@
 
 #### Exceptions
 
---> Nog niet beoordeeld
-
 - [ ] *try..catch*
 - [ ] *try..catch..finally*
-- [ ] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
+- [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
 
 #### Enumerations
 
@@ -85,28 +83,25 @@
 
 #### Generic collections
 
---> Nog niet beoordeeld
-
-- [ ] *List<T>*
+- [x] *List<T>*
 - [ ] *Dictionary<T,T>*
 - [ ] *Overzicht andere generic collections*
 
+
 #### Interfaces
 
---> Nog niet beoordeeld
-
-- [ ] *Interface declaratie*
-- [ ] *Interface implementatie*
+- [x] *Interface declaratie*
+- [x] *Interface implementatie*
 - [ ] *Interface gebruiken als type*
 
 #### Architectuur van een toepassing - Meerlagenmodel
 
---> Nog niet beoordeeld
-
 - [ ] *Klasseblibliotheken*
-- [ ] *Meerlagenmodel - 3lagenmodel*
-- [ ] *'Loose coupling' - dependency injection*
+- [x] *Meerlagenmodel - 3lagenmodel*
+- [x] *'Loose coupling' - dependency injection*
 - [ ] *Interface gebruiken als scheiding tussen architectuurlagen*
+
+* Je hebt nog geen datalaag?
 
 #### Bestanden en 'streams'
 
@@ -217,6 +212,6 @@
 
 #### Code Reviews
 
---> Nog niet beoordeeld
+- [x] *Code reviews*
 
-- [ ] *Code reviews*
+* Code review is OK maar soms wat slordig geschreven.
