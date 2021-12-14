@@ -10,8 +10,7 @@ namespace snakeForm
         private bool _goRight;
         private bool _goUp;
         private bool _goDown;
-      
-
+     
         public Form1(Game game)
         {
             InitializeComponent();
@@ -21,7 +20,6 @@ namespace snakeForm
             _game.Start();
 
         }
-
 
         private void RefreshGraphics(object sender, PaintEventArgs e)
         {
@@ -53,13 +51,26 @@ namespace snakeForm
 
         private void GameTimerTick(object sender, EventArgs e)
         {
-            if (_game.GameStatus == true)
+            if (_game.GameStatus == true && _game.Exit == true)
             {
-                Console.WriteLine(_game.GameStatus);
-                Console.WriteLine("stopped");
-                gameTimer.Stop();
+                this.Close();
+                Application.Exit();
+                
             }
 
+            else if (_game.Conitnue == true && _game.GameStatus == true)
+            {
+                this.Close();
+                Application.Restart();
+            }
+
+            else if(_game.GameStatus == true)
+            {
+                this.Close();
+                Application.Exit();
+                
+            }
+            
             if (_goLeft)
             {
                 _game.Direction = Directions.Left;
@@ -83,8 +94,7 @@ namespace snakeForm
             scoreCounter.Text = Convert.ToString(_game.Score);
             canvasMain.Invalidate();
         }
-
-      
+    
        
         private void Form1KeyDown(object sender, KeyEventArgs e)
         {     
@@ -106,7 +116,6 @@ namespace snakeForm
             }
 
         }
-
         private void Form1KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)

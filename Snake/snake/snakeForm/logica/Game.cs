@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
+
 namespace snakeForm.logica
 {
     public class Game : IGame
@@ -55,14 +56,27 @@ namespace snakeForm.logica
             get { return _direction; }
             set { _direction = value; }
         }
-
-        //public List<(int x, int y)> Snake { get; set; } = new List<(int x, int y)>();
         public List<Cirkel> Snake = new List<Cirkel>();
         public Cirkel food = new Cirkel();
         public Cirkel bodypart = new Cirkel();
 
+        private bool _exit;
+        public bool Exit
+        {
+            get { return _exit; }
+            set { _exit = value; }
+        }
 
+        private bool _continue;
+        public bool Conitnue
+        {
+            get { return _continue; }
+            set { _continue = value; }
+        }
 
+        Dictionary<Enum, Action> dictMovement = new Dictionary<Enum, Action>();
+
+        
 
         public Game()
         {
@@ -71,10 +85,15 @@ namespace snakeForm.logica
             _speed = 15;
             _score = 0;
             _direction = Directions.Left;
+            _exit = false;
+            _continue = false;
 
             InitiazeSnake();
 
-
+            dictMovement.Add(Directions.Left, SnakeLeft);
+            dictMovement.Add(Directions.Right, SnakeRight);
+            dictMovement.Add(Directions.Up, SnakeUp);
+            dictMovement.Add(Directions.Down, SnakeDown);
 
         }
 
@@ -82,7 +101,10 @@ namespace snakeForm.logica
         {
 
             timer.Interval = 100;
+            _exit = false;
+            _continue = false;
             Start();
+            
         }
 
         public void Start()
@@ -94,10 +116,7 @@ namespace snakeForm.logica
             GenerateFood();
         }
 
-        public void Stop()
-        {
-            timer.Stop();
-        }
+ 
 
         public void GenerateFood()
         {
@@ -110,8 +129,17 @@ namespace snakeForm.logica
             if (Snake[0].X > 33 || Snake[0].Y > 33 || Snake[0].X < 0 || Snake[0].Y < 0)
             {
                 GameStatus = true;
-                timer.Stop();
-                MessageBox.Show($"Thanks for playing. You had a score of: {Score}");
+            
+                //MessageBox.Show($"Thanks for playing. You had a score of: {Score}");
+               // Console.WriteLine(_continue);
+                Console.WriteLine($"Thanks for playing. You had a score of: {Score}");
+                _continue = true;
+                //Console.WriteLine(_continue);
+                PrintMenu();
+                string input = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine(input[0]);
+                GetuserChoice(input[0])();
              
             }
         }
@@ -134,26 +162,9 @@ namespace snakeForm.logica
             {
                 if (i == 0)
                 {
-                    switch (Direction)
-
-                    {
-                        case Directions.Left:
-                            Snake[0].X--;
-
-                            break;
-                        case Directions.Right:
-                            Snake[0].X++;
-                            break;
-                        case Directions.Down:
-                            Snake[0].Y++;
-                            break;
-                        case Directions.Up:
-                            Snake[0].Y--;
-                            break;
-                    }
+                    if (dictMovement.ContainsKey(Direction)) dictMovement[Direction]();
 
                     Dood();
-
                 }
                 else
                 {
@@ -162,6 +173,62 @@ namespace snakeForm.logica
                 }
             }
         }
+
+        private Action GetuserChoice(char input)
+        {
+        
+            return input switch
+            {
+                '0' => () => Stop(),
+                '1' => new Game().Further,
+                 _ => () => Console.WriteLine("Invalid input") 
+            };
+        }
+        private void PrintMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("MENU");
+            Console.WriteLine();
+            Console.WriteLine("0.  Stop met spelen");
+            Console.WriteLine("1.  Opnieuw)");
+            Console.WriteLine();
+            Console.Write("Geef je keuze in: ");
+        }
+        public void Stop()
+
+        {
+            _exit = true;
+            timer.Stop();
+            GameStatus = true ;
+            
+        }
+        private void Further()
+        {
+
+            Console.WriteLine("starten");
+            new Game().InitiazeSnake();
+
+        }
+        private void SnakeLeft()
+        {
+            Snake[0].X--;
+        }
+        private void SnakeRight()
+        {
+            Snake[0].X++;
+        }
+        private void SnakeUp()
+        {
+            Snake[0].Y--;
+        }
+        private void SnakeDown()
+        {
+            Snake[0].Y++;
+        }
+
+
+
 
     }
 }
