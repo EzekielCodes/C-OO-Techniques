@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-
+﻿
 
 namespace snakeForm.logica
 {
     public class Game : IGame
+
     {
+        
         public System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private int _width;
         public int Width
@@ -89,11 +85,12 @@ namespace snakeForm.logica
             _continue = false;
 
             InitiazeSnake();
+           
 
-            dictMovement.Add(Directions.Left, SnakeLeft);
-            dictMovement.Add(Directions.Right, SnakeRight);
-            dictMovement.Add(Directions.Up, SnakeUp);
-            dictMovement.Add(Directions.Down, SnakeDown);
+            dictMovement.Add(Directions.Left, Snake.SnakeLeft);
+            dictMovement.Add(Directions.Right, Snake.SnakeRight);
+            dictMovement.Add(Directions.Up, Snake.SnakeUp);
+            dictMovement.Add(Directions.Down, Snake.SnakeDown);
 
         }
 
@@ -210,7 +207,7 @@ namespace snakeForm.logica
             new Game().InitiazeSnake();
 
         }
-        private void SnakeLeft()
+       /* private void SnakeLeft()
         {
             Snake[0].X--;
         }
@@ -225,9 +222,13 @@ namespace snakeForm.logica
         private void SnakeDown()
         {
             Snake[0].Y++;
-        }
 
+           
+        }*/
 
+     
+        
+        
 
 
     }

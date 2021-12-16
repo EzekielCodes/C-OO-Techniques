@@ -6,6 +6,7 @@ namespace snakeForm
     public partial class Form1 : Form
     {
         private Game _game = new Game();
+        //private readonly IGame _game;
         private bool _goLeft;
         private bool _goRight;
         private bool _goUp;
@@ -46,6 +47,8 @@ namespace snakeForm
                     new Rectangle(_game.food.X * _game.Width,
                     _game.food.Y * _game.Height,
                     _game.Width, _game.Height));
+
+            
 
         }
 

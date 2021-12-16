@@ -39,6 +39,7 @@ namespace snakeForm.logica
             return $"X value: {_x} , Y value {_y}";
                
         }
+        
 
     }
 }
