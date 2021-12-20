@@ -46,6 +46,7 @@
 
 * Zet een enum-declaratie niet in hetzelfde bestand als een klasse-declaratie.
 * Hanteer de gevraagde volgorde voor de verschillende onderdelen van je klasse (properties na de velden en voor de constructor).
+* Gebruik voor alle velden, klassen, methodes, properties steeds access modifiers (public, private...).
 * Gebruik type inference ('var') volgens de conventie uit de stijlregels.
 * Je gebruikt 'Random' niet op een correcte manier. Gebruik per kalsse één instantie die je dan in je methodes telkens opnieuw gebruikt.
 * Vermijd overbodige blanco lijnen (bv. twee achter elkaar of een blanco lijn tussen twee accolades).
@@ -84,7 +85,7 @@
 #### Generic collections
 
 - [x] *List<T>*
-- [ ] *Dictionary<T,T>*
+- [x] *Dictionary<T,T>*
 - [ ] *Overzicht andere generic collections*
 
 
@@ -119,9 +120,7 @@
 
 #### Klassen - klassehiërarchie
 
---> Nog niet beoordeeld
-
-- [ ] *Klasse declaratie*
+- [x] *Klasse declaratie*
 - [ ] *constructor overloading*
 - [ ] *Klasse-hiërarchie - subklasse - base-constructor*
 - [ ] *Klasse-hiërarchie - virtual methods - override*
@@ -135,22 +134,18 @@
 
 ##### Extension methods
 
---> Nog niet beoordeeld
-
-- [ ] *Extension method schrijven*
-- [ ] *Functioneel gebruik van extension methods*
+- [x] *Extension method schrijven*
+- [x] *Functioneel gebruik van extension methods*
 
 #### Delegates
 
---> Nog niet beoordeeld
-
-- [ ] *(Predefined) Delegates*
+- [x] *(Predefined) Delegates*
 
 #### Lambda expressions
 
---> Nog niet beoordeeld
+- [x] *Lambda expressions*
 
-- [ ] *Lambda expressions*
+* Je gebruikt enkel zeer eenvoudige lambda-expressions, overgenomen uit voorbeeldcode.
 
 #### Language Integrated Query (Linq)
 
@@ -167,6 +162,7 @@
 
 * Je reageert op externe events maar nog niet op eigen events die vanuit je eigen code gestart worden.
 
+20/12/2021: wat is hier gewijzigd ten opzichte van de vorige feedback?
 
 #### Concurrent programmatie: Tasks
 
@@ -206,9 +202,7 @@
 
 #### (Statische klassen, methoden, velden)
 
---> Nog niet beoordeeld
-
-- [ ] *Zinvol gebruik statische klassen, methoden, velden*
+- [x] *Zinvol gebruik statische klassen, methoden, velden*
 
 #### Code Reviews
 
