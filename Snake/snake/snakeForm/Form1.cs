@@ -103,12 +103,6 @@ namespace snakeForm
             canvasMain.Invalidate();
         }
 
-
-       /* private void Form1KeyDown(object sender, KeyEventArgs e)
-        {
-
-
-        }*/
         private void Form1KeyUp(object sender, KeyEventArgs e)
         {
            

@@ -72,8 +72,8 @@ namespace snakeForm.logica
         public List<string> ScoreList { get; set; }
         public Cirkel Food { get; set; }
 
-        public Dictionary<Enum, Action> dictMovement = new Dictionary<Enum, Action>();
-        public String sourceFile = Properties.Resources.SourceFile;
+        public Dictionary<Enum, Action> DictMovement = new Dictionary<Enum, Action>();
+        public String SourceFile = Properties.Resources.SourceFile;
 
 
         public Game()
@@ -93,10 +93,10 @@ namespace snakeForm.logica
             
             InitiazeSnake();
             
-            dictMovement.Add(Directions.Left, Snake.SnakeLeft);
-            dictMovement.Add(Directions.Right, Snake.SnakeRight);
-            dictMovement.Add(Directions.Up, Snake.SnakeUp);
-            dictMovement.Add(Directions.Down, Snake.SnakeDown);
+            DictMovement.Add(Directions.Left, Snake.SnakeLeft);
+            DictMovement.Add(Directions.Right, Snake.SnakeRight);
+            DictMovement.Add(Directions.Up, Snake.SnakeUp);
+            DictMovement.Add(Directions.Down, Snake.SnakeDown);
 
         }
 
@@ -107,7 +107,6 @@ namespace snakeForm.logica
             _exit = false;
             _continue = false;
             Start();
-
         }
 
         public void Start()
@@ -126,6 +125,9 @@ namespace snakeForm.logica
             Random random = new Random();
             int randX = random.Next(0, 33);
             int randY = random.Next(0, 33);
+
+            if ((randX == 0) && (randY == 0))
+                return new Cirkel { X = randX, Y = randY};
 
             for (int i = 0; i < Snake.Count; i++)
             {
@@ -173,7 +175,7 @@ namespace snakeForm.logica
             {
                 if (i == 0)
                 {
-                    if (dictMovement.ContainsKey(Direction)) dictMovement[Direction]();
+                    if (DictMovement.ContainsKey(Direction)) DictMovement[Direction]();
 
                     Dood();
                 }
@@ -224,23 +226,24 @@ namespace snakeForm.logica
 
         public void ReadFile()
         {
+            StreamReader sr = new StreamReader(SourceFile);
             try
             {
-                using (StreamReader sr = new StreamReader(sourceFile))
-                {
-                    String line;
+                     String line;
                     while (!sr.EndOfStream)
                     {
                         line = sr.ReadLine();
                         ScoreList.Add(line);
                     }
-
-                }
                 Console.WriteLine(String.Join(" \n", ScoreList));
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"The file couldn't be read { ex.Message}");
+            }
+            finally
+            {
+                if (sr != null) sr.Dispose();
             }
 
         }
@@ -252,22 +255,22 @@ namespace snakeForm.logica
             {
                 ScoreList.Add(scoreConvert);
             }
+            StreamWriter sw = new StreamWriter(SourceFile);
             try
             {
-
-                using (StreamWriter sw = new StreamWriter(sourceFile))
-                {
-
                     foreach (String line in ScoreList)
                     {
                         sw.WriteLine(line);
                     }
-                    Console.WriteLine(String.Join(" \n", ScoreList));
-                }
+                    Console.WriteLine(String.Join(" \n", ScoreList));      
             }
             catch(Exception ex)
             {
                 Console.WriteLine($"Couldn't write file { ex.Message}");
+            }
+            finally
+            {
+                if (sw != null) sw.Dispose();
             }
 
         }
