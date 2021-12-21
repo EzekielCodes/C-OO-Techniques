@@ -5,7 +5,7 @@ namespace snakeForm.logica
     public class Game : IGame
 
     {
-        
+
         public System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private int _width;
         public int Width
@@ -52,9 +52,7 @@ namespace snakeForm.logica
             get { return _direction; }
             set { _direction = value; }
         }
-        public List<Cirkel> Snake = new List<Cirkel>();
-        public Cirkel food = new Cirkel();
-        public Cirkel bodypart = new Cirkel();
+        public Cirkel Bodypart { get; set; }
 
         private bool _exit;
         public bool Exit
@@ -70,9 +68,13 @@ namespace snakeForm.logica
             set { _continue = value; }
         }
 
-        Dictionary<Enum, Action> dictMovement = new Dictionary<Enum, Action>();
+        public List<Cirkel> Snake { get; set; }
+        public List<string> ScoreList { get; set; }
+        public Cirkel Food { get; set; }
 
-        
+        public Dictionary<Enum, Action> dictMovement = new Dictionary<Enum, Action>();
+        public String sourceFile = Properties.Resources.SourceFile;
+
 
         public Game()
         {
@@ -83,10 +85,14 @@ namespace snakeForm.logica
             _direction = Directions.Left;
             _exit = false;
             _continue = false;
-
+            ScoreList = new List<String>();
+            Snake = new List<Cirkel>();
+            Food = new Cirkel();
+            Bodypart = new Cirkel();
+            ReadFile();
+            
             InitiazeSnake();
-           
-
+            
             dictMovement.Add(Directions.Left, Snake.SnakeLeft);
             dictMovement.Add(Directions.Right, Snake.SnakeRight);
             dictMovement.Add(Directions.Up, Snake.SnakeUp);
@@ -101,7 +107,7 @@ namespace snakeForm.logica
             _exit = false;
             _continue = false;
             Start();
-            
+
         }
 
         public void Start()
@@ -113,12 +119,23 @@ namespace snakeForm.logica
             GenerateFood();
         }
 
- 
+       
 
-        public void GenerateFood()
+        public Cirkel GenerateFood()
         {
             Random random = new Random();
-            food = new Cirkel { X = random.Next(0, 33), Y = random.Next(0, 33) };
+            int randX = random.Next(0, 33);
+            int randY = random.Next(0, 33);
+
+            for (int i = 0; i < Snake.Count; i++)
+            {
+                if((Snake[i].X == randX) && (Snake[i].Y == randY))
+                {
+                    return GenerateFood();
+                }
+            }
+            
+           return Food = new Cirkel { X = randX, Y = randY };
         }
 
         public void Dood()
@@ -126,28 +143,25 @@ namespace snakeForm.logica
             if (Snake[0].X > 33 || Snake[0].Y > 33 || Snake[0].X < 0 || Snake[0].Y < 0)
             {
                 GameStatus = true;
-            
-                //MessageBox.Show($"Thanks for playing. You had a score of: {Score}");
-               // Console.WriteLine(_continue);
+                WriteFile();
                 Console.WriteLine($"Thanks for playing. You had a score of: {Score}");
                 _continue = true;
-                //Console.WriteLine(_continue);
                 PrintMenu();
                 string input = Console.ReadLine();
                 Console.WriteLine();
                 Console.WriteLine(input[0]);
                 GetuserChoice(input[0])();
-             
+
             }
         }
 
         public void Eat()
         {
-            if (Snake[0].X == food.X && Snake[0].Y == food.Y)
+            if (Snake[0].X == Food.X && Snake[0].Y == Food.Y)
             {
                 Score += 1;
-                bodypart = new Cirkel { X = Snake[Snake.Count - 1].X + 1, Y = Snake[Snake.Count - 1].Y + 1 };
-                Snake.Add(bodypart);
+                Bodypart = new Cirkel { X = Snake[Snake.Count - 1].X + 1, Y = Snake[Snake.Count - 1].Y + 1 };
+                Snake.Add(Bodypart);
                 GenerateFood();
 
             }
@@ -173,12 +187,12 @@ namespace snakeForm.logica
 
         private Action GetuserChoice(char input)
         {
-        
+
             return input switch
             {
                 '0' => () => Stop(),
                 '1' => new Game().Further,
-                 _ => () => Console.WriteLine("Invalid input") 
+                _ => () => Console.WriteLine("Invalid input")
             };
         }
         private void PrintMenu()
@@ -197,8 +211,8 @@ namespace snakeForm.logica
         {
             _exit = true;
             timer.Stop();
-            GameStatus = true ;
-            
+            GameStatus = true;
+
         }
         private void Further()
         {
@@ -207,29 +221,56 @@ namespace snakeForm.logica
             new Game().InitiazeSnake();
 
         }
-       /* private void SnakeLeft()
-        {
-            Snake[0].X--;
-        }
-        private void SnakeRight()
-        {
-            Snake[0].X++;
-        }
-        private void SnakeUp()
-        {
-            Snake[0].Y--;
-        }
-        private void SnakeDown()
-        {
-            Snake[0].Y++;
 
-           
-        }*/
+        public void ReadFile()
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(sourceFile))
+                {
+                    String line;
+                    while (!sr.EndOfStream)
+                    {
+                        line = sr.ReadLine();
+                        ScoreList.Add(line);
+                    }
 
-     
-        
-        
+                }
+                Console.WriteLine(String.Join(" \n", ScoreList));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"The file couldn't be read { ex.Message}");
+            }
 
+        }
+
+        public void WriteFile()
+        {
+            String scoreConvert = Convert.ToString(Score);
+            if (!ScoreList.Contains(scoreConvert))
+            {
+                ScoreList.Add(scoreConvert);
+            }
+            try
+            {
+
+                using (StreamWriter sw = new StreamWriter(sourceFile))
+                {
+
+                    foreach (String line in ScoreList)
+                    {
+                        sw.WriteLine(line);
+                    }
+                    Console.WriteLine(String.Join(" \n", ScoreList));
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Couldn't write file { ex.Message}");
+            }
+
+        }
 
     }
 }

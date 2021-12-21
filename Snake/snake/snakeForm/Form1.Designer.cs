@@ -33,6 +33,7 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.scorelabel = new System.Windows.Forms.Label();
             this.scoreCounter = new System.Windows.Forms.Label();
+            this.labelHigh = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvasMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,19 +69,29 @@
             this.scoreCounter.TabIndex = 2;
             this.scoreCounter.Text = "0";
             // 
+            // labelHigh
+            // 
+            this.labelHigh.AutoSize = true;
+            this.labelHigh.Location = new System.Drawing.Point(584, 373);
+            this.labelHigh.Name = "labelHigh";
+            this.labelHigh.Size = new System.Drawing.Size(59, 25);
+            this.labelHigh.TabIndex = 3;
+            this.labelHigh.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 560);
+            this.Controls.Add(this.labelHigh);
             this.Controls.Add(this.scoreCounter);
             this.Controls.Add(this.scorelabel);
             this.Controls.Add(this.canvasMain);
             this.Location = new System.Drawing.Point(13, 13);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.canvasMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -93,5 +104,6 @@
         private System.Windows.Forms.Timer gameTimer;
         private Label scorelabel;
         private Label scoreCounter;
+        private Label labelHigh;
     }
 }

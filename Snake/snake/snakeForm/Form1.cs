@@ -5,20 +5,23 @@ namespace snakeForm
 {
     public partial class Form1 : Form
     {
-        private Game _game = new Game();
-        //private readonly IGame _game;
+        private readonly IGame _game;
         private bool _goLeft;
         private bool _goRight;
         private bool _goUp;
         private bool _goDown;
      
-        public Form1(Game game)
+        public Form1(IGame game)
         {
+            
             InitializeComponent();
             _game = game;
             gameTimer.Interval = 100;
             gameTimer.Start();
             _game.Start();
+            
+            //linq
+            labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
 
         }
 
@@ -43,9 +46,11 @@ namespace snakeForm
                 }
                 
             }
+
+            
             canvasGraphics.FillRectangle(Brushes.Red,
-                    new Rectangle(_game.food.X * _game.Width,
-                    _game.food.Y * _game.Height,
+                    new Rectangle(_game.Food.X * _game.Width,
+                    _game.Food.Y * _game.Height,
                     _game.Width, _game.Height));
 
             
@@ -97,30 +102,16 @@ namespace snakeForm
             scoreCounter.Text = Convert.ToString(_game.Score);
             canvasMain.Invalidate();
         }
-    
-       
-        private void Form1KeyDown(object sender, KeyEventArgs e)
-        {     
-            if (e.KeyCode == Keys.Left && _game.Direction != Directions.Right)
-            {
-                _goLeft = true;
-            }
-            if (e.KeyCode == Keys.Right && _game.Direction != Directions.Left)
-            {
-                _goRight = true;
-            }
-            if (e.KeyCode == Keys.Up && _game.Direction != Directions.Down)
-            {
-                _goUp = true;
-            }
-            if (e.KeyCode == Keys.Down && _game.Direction != Directions.Up)
-            {
-                _goDown = true;
-            }
 
-        }
+
+       /* private void Form1KeyDown(object sender, KeyEventArgs e)
+        {
+
+
+        }*/
         private void Form1KeyUp(object sender, KeyEventArgs e)
         {
+           
             if (e.KeyCode == Keys.Left)
             {
                 _goLeft = false;
@@ -139,5 +130,28 @@ namespace snakeForm
             }
            
         }
+
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.Left && _game.Direction != Directions.Right)
+            {
+                _goLeft = true;
+            }
+            if (e.KeyCode == Keys.Right && _game.Direction != Directions.Left)
+            {
+                _goRight = true;
+            }
+            if (e.KeyCode == Keys.Up && _game.Direction != Directions.Down)
+            {
+                _goUp = true;
+            }
+            if (e.KeyCode == Keys.Down && _game.Direction != Directions.Up)
+            {
+                _goDown = true;
+            }
+        }
+
+       
     }
 }
