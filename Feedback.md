@@ -63,7 +63,7 @@
 - [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
 
 * `catch (Exception ex)` is geen good practice. Probeer meer specifieke excepties op te vangen.
-* Het is geen goed idee om vanuit de Logica ('Game') van een WinForms toepassing naar de consoe te 
+* Het is geen goed idee om vanuit de Logica ('Game') van een WinForms toepassing naar de console te schrijven (dat is user-interactie). Je vangt die exceptie dus beter op in je presentatielaag. 
 
 #### Enumerations
 
