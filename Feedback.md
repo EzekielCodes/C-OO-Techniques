@@ -59,7 +59,7 @@
 #### Exceptions
 
 - [ ] *try..catch*
-- [ ] *try..catch..finally*
+- [x] *try..catch..finally*
 - [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
 
 * `catch (Exception ex)` is geen good practice. Probeer meer specifieke excepties op te vangen.
@@ -75,7 +75,7 @@
 #### Properties
 
 - [x] *Full property (with private backing field)*
-- [ ] *Extra code in getter of setter (bv. validatie)*
+- [x] *Extra code in getter of setter (bv. validatie)*
 - [x] *Auto-implemented property*
 - [ ] *Access-modifiers voor Getters en Setters*
 
@@ -84,9 +84,7 @@
 
 #### Interpolated strings
 
---> Nog niet beoordeeld
-
-- [ ] *Interpolated strings*
+- [x] *Interpolated strings*
 
 #### Generic collections
 
@@ -99,7 +97,7 @@
 
 - [x] *Interface declaratie*
 - [x] *Interface implementatie*
-- [ ] *Interface gebruiken als type*
+- [x] *Interface gebruiken als type*
 
 #### Architectuur van een toepassing - Meerlagenmodel
 
@@ -112,10 +110,8 @@
 
 #### Bestanden en 'streams'
 
---> Nog niet beoordeeld
-
 - [ ] *Statische klassen uit 'System.IO'*
-- [ ] *Streams*
+- [4] *Streams*
 - [ ] *Serialisatie*
 
 #### 'Value' en 'Reference' types, cloning van objecten
@@ -155,11 +151,12 @@
 
 #### Language Integrated Query (Linq)
 
---> Nog niet beoordeeld
-
 - [ ] *Linq standard query operator syntax*
-- [ ] *Linq method syntax*
-- [ ] *Basismethodes voor Linq*
+- [x] *Linq method syntax*
+- [x] *Basismethodes voor Linq*
+
+* BJe gebruikt Linq heel beperkt: Order, ToList, Take
+
 
 #### Events
 
@@ -194,10 +191,10 @@
 
 #### (Recursie)
 
---> Nog niet beoordeeld
-
-- [ ] *Recursie - concept*
+- [x] *Recursie - concept*
 - [ ] *Backtracking*
+
+* Theoretisch zou het kunnen dat je recursieve methode 'GenerateFood' nooit stapt (als er elke keer random punten berekend worden die net op je slang liggen).
 
 #### (Indexers & Iteratoren)
  
