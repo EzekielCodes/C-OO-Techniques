@@ -127,7 +127,7 @@ namespace snakeForm.logica
             int randY = random.Next(0, 33);
 
             if ((randX == 0) && (randY == 0))
-                return new Cirkel { X = randX, Y = randY};
+                return new Cirkel { X = 1, Y = 1};
 
             for (int i = 0; i < Snake.Count; i++)
             {

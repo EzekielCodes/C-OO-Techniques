@@ -1,8 +1,7 @@
 {
   "profiles": {
     "snakeForm": {
-      "commandName": "Project",
-      "workingDirectory": "$(ProjectDir)"
+      "commandName": "Project"
     }
   }
 }
