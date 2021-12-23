@@ -23,6 +23,8 @@ namespace snakeForm
             labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
 
         }
+
+        
         private void RefreshGraphics(object sender, PaintEventArgs e)
         {
             Graphics canvasGraphics = e.Graphics;

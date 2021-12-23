@@ -91,7 +91,7 @@ namespace snakeForm.logica
             Food = new Cirkel(0,0);
             Bodypart = new Cirkel();
             //ReadFile();
-            try
+            /*try
             {
                 var job = Task.Run(ReadFile);
                 job.Wait();
@@ -100,7 +100,7 @@ namespace snakeForm.logica
             catch(AggregateException ex)
             {
                 Console.WriteLine(ex.InnerExceptions);
-            }
+            }*/
                 InitiazeSnake();
 
 
@@ -111,22 +111,28 @@ namespace snakeForm.logica
 
         }
 
-        private void InitiazeSnake()
+        private async void InitiazeSnake()
         {
-
+            
             timer.Interval = 100;
             _exit = false;
             _continue = false;
+            await Task.Run(() => {
+                Console.WriteLine("waiting:))");
+                ReadFile();
+                Console.WriteLine("done waiting for read");
+                });
             Start();
         }
 
-        public void Start()
+        public  void Start()
         {
-                Snake.Clear();
-                Cirkel head = new Cirkel(17,17,16,16);
-                Snake.Add(head);
-                timer.Start();
-                GenerateFood();
+            
+            Snake.Clear();
+            Cirkel head = new Cirkel(17,17,16,16);
+            Snake.Add(head);
+            timer.Start();
+            GenerateFood();
         }
 
 
@@ -235,7 +241,7 @@ namespace snakeForm.logica
 
         }
 
-        public void ReadFile()
+        public  void ReadFile()
         {
             StreamReader sr = new StreamReader(SourceFile);
             try
