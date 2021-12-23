@@ -61,7 +61,7 @@ namespace snakeForm.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\Guest\c#\2122-CSharpoo-EzekielAkindele\Snake\snake\snakeForm\File\score.txt.
+        ///   Looks up a localized string similar to Data\score.txt.
         /// </summary>
         internal static string SourceFile {
             get {

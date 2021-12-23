@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SourceFile" xml:space="preserve">
-    <value>C:\Users\Guest\c#\2122-CSharpoo-EzekielAkindele\Snake\snake\snakeForm\File\score.txt</value>
+    <value>Data\score.txt</value>
     <comment>score</comment>
   </data>
 </root>
