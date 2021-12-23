@@ -2,6 +2,11 @@
 ## Feedback C# OO Programming
 
 
+#### Algemeen 
+
+* **Je toepassing geeft bij het opstarten onmiddellijk een runtime error. Je werkt voor een bestand met een absoluut pad dat enkel op jouw computer bestaat. Omdat we enkel werkende code evalueren kan je momenteel dus geen scores krijgen.**
+
+
 #### Kennismaking Visual Studio 2019
 
 
@@ -32,8 +37,6 @@
 
 #### Programmeerstijl
 
---> Nog niet beoordeeld
-
 - [ ] *Huisregels voor programmeerstijl volgen*
 
 * Je volgt niet altijd de regels voor naamgeving:
@@ -58,6 +61,9 @@
 - [ ] *try..catch*
 - [ ] *try..catch..finally*
 - [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
+
+* `catch (Exception ex)` is geen good practice. Probeer meer specifieke excepties op te vangen.
+* Het is geen goed idee om vanuit de Logica ('Game') van een WinForms toepassing naar de consoe te 
 
 #### Enumerations
 
