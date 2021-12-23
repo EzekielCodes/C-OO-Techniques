@@ -1,5 +1,6 @@
-﻿
-
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 namespace snakeForm.logica
 {
     public class Game : IGame
@@ -87,12 +88,22 @@ namespace snakeForm.logica
             _continue = false;
             ScoreList = new List<String>();
             Snake = new List<Cirkel>();
-            Food = new Cirkel();
+            Food = new Cirkel(0,0);
             Bodypart = new Cirkel();
-            ReadFile();
-            
-            InitiazeSnake();
-            
+            //ReadFile();
+            try
+            {
+                var job = Task.Run(ReadFile);
+                job.Wait();
+
+            }
+            catch(AggregateException ex)
+            {
+                Console.WriteLine(ex.InnerExceptions);
+            }
+                InitiazeSnake();
+
+
             DictMovement.Add(Directions.Left, Snake.SnakeLeft);
             DictMovement.Add(Directions.Right, Snake.SnakeRight);
             DictMovement.Add(Directions.Up, Snake.SnakeUp);
@@ -111,14 +122,14 @@ namespace snakeForm.logica
 
         public void Start()
         {
-            Snake.Clear();
-            Cirkel head = new Cirkel { X = 17, Y = 17 };
-            Snake.Add(head);
-            timer.Start();
-            GenerateFood();
+                Snake.Clear();
+                Cirkel head = new Cirkel(17,17,16,16);
+                Snake.Add(head);
+                timer.Start();
+                GenerateFood();
         }
 
-       
+
 
         public Cirkel GenerateFood()
         {
@@ -127,17 +138,17 @@ namespace snakeForm.logica
             int randY = random.Next(0, 33);
 
             if ((randX == 0) && (randY == 0))
-                return new Cirkel { X = 1, Y = 1};
+                return new Cirkel { X = 1, Y = 1 };
 
             for (int i = 0; i < Snake.Count; i++)
             {
-                if((Snake[i].X == randX) && (Snake[i].Y == randY))
+                if ((Snake[i].X == randX) && (Snake[i].Y == randY))
                 {
                     return GenerateFood();
                 }
             }
-            
-           return Food = new Cirkel { X = randX, Y = randY };
+
+            return Food = new Cirkel { X = randX, Y = randY };
         }
 
         public void Dood()
@@ -229,22 +240,39 @@ namespace snakeForm.logica
             StreamReader sr = new StreamReader(SourceFile);
             try
             {
-                     String line;
-                    while (!sr.EndOfStream)
+                if (File.Exists(SourceFile))
+                {
+                    try
                     {
-                        line = sr.ReadLine();
-                        ScoreList.Add(line);
+                        String line;
+                        while (!sr.EndOfStream)
+                        {
+                            line = sr.ReadLine();
+                            ScoreList.Add(line);
+                        }
+                        Console.WriteLine(String.Join(" \n", ScoreList));
                     }
-                Console.WriteLine(String.Join(" \n", ScoreList));
+                    catch (IOException e)
+                    {
+                        Console.WriteLine($"The file could not be read { e.Message}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fout { ex.Message}");
+                    }
+                    finally
+                    {
+                        if (sr != null) sr.Dispose();
+                    }
+                }
+
+
             }
-            catch (Exception ex)
+            catch (FileNotFoundException filenotfound)
             {
-                Console.WriteLine($"The file couldn't be read { ex.Message}");
+                Console.WriteLine($"FIle not found{ filenotfound.Message}");
             }
-            finally
-            {
-                if (sr != null) sr.Dispose();
-            }
+
 
         }
 
@@ -256,24 +284,41 @@ namespace snakeForm.logica
                 ScoreList.Add(scoreConvert);
             }
             StreamWriter sw = new StreamWriter(SourceFile);
+
             try
             {
-                    foreach (String line in ScoreList)
+
+                if (File.Exists(SourceFile))
+                {
+                    try
                     {
-                        sw.WriteLine(line);
+                        foreach (String line in ScoreList)
+                        {
+                            sw.WriteLine(line);
+                        }
+                        Console.WriteLine(String.Join(" \n", ScoreList));
                     }
-                    Console.WriteLine(String.Join(" \n", ScoreList));      
+                    catch (IOException e)
+                    {
+                        Console.WriteLine($"The file couldn't be written { e.Message}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Fout { ex.Message}");
+                    }
+                    finally
+                    {
+                        if (sw != null) sw.Dispose();
+                    }
+                }
             }
-            catch(Exception ex)
+
+            catch (FileNotFoundException filenotfound)
             {
-                Console.WriteLine($"Couldn't write file { ex.Message}");
+                Console.WriteLine($"FIle not found{ filenotfound.Message}");
             }
-            finally
-            {
-                if (sw != null) sw.Dispose();
-            }
+
 
         }
-
     }
 }

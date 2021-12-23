@@ -12,8 +12,7 @@ namespace snakeForm
         private bool _goDown;
      
         public Form1(IGame game)
-        {
-            
+        {         
             InitializeComponent();
             _game = game;
             gameTimer.Interval = 100;
@@ -24,7 +23,6 @@ namespace snakeForm
             labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
 
         }
-
         private void RefreshGraphics(object sender, PaintEventArgs e)
         {
             Graphics canvasGraphics = e.Graphics;
