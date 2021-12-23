@@ -117,12 +117,13 @@ namespace snakeForm.logica
             timer.Interval = 100;
             _exit = false;
             _continue = false;
+            Start();
             await Task.Run(() => {
-                Console.WriteLine("waiting:))");
+                Console.WriteLine("waiting");
                 ReadFile();
                 Console.WriteLine("done waiting for read");
                 });
-            Start();
+           
         }
 
         public  void Start()
