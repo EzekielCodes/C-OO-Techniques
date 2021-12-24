@@ -4,9 +4,6 @@
 
 #### Algemeen 
 
-* **Je toepassing geeft bij het opstarten onmiddellijk een runtime error. Je werkt voor een bestand met een absoluut pad dat enkel op jouw computer bestaat. Omdat we enkel werkende code evalueren kan je momenteel dus geen scores krijgen.**
-
-
 #### Kennismaking Visual Studio 2019
 
 
@@ -15,17 +12,14 @@
 - [x] *Eenvoudige WinForm toepassing*
 - [x] *Een klasse toevoegen*
 
-* Je bent gestart met ene console-toepassing die je dan 'omgebouwd' hebt naar een WinForms toepassing?
-
 #### Gebruik GIT
 
 
-- [ ] *Je gebruikt 'atomaire' commits*
-- [ ] *Je gebruikt zinvolle commit messages*
+- [x] *Je gebruikt 'atomaire' commits*
+- [x] *Je gebruikt zinvolle commit messages*
 
-* Je Commits zijn niet voldoende frekwent. Probeer na het schrijven of grondig aanpassen van een methode, klasse of na het oplossen van een bug onmiddellijk een commit te doen.
 * Je commits zijn niet (altijd) atomair: je hebt commits waarin je meerdere losstaande wijzigingen hebt gedaan.
-
+* Je commit-messages zouden nog iets concreter en specifieker kunnen zijn.
 
 #### Debugging
 
@@ -62,7 +56,6 @@
 - [x] *try..catch..finally*
 - [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
 
-* `catch (Exception ex)` is geen good practice. Probeer meer specifieke excepties op te vangen.
 * Het is geen goed idee om vanuit de Logica ('Game') van een WinForms toepassing naar de console te schrijven (dat is user-interactie). Je vangt die exceptie dus beter op in je presentatielaag. 
 
 #### Enumerations
@@ -110,8 +103,8 @@
 
 #### Bestanden en 'streams'
 
-- [ ] *Statische klassen uit 'System.IO'*
-- [4] *Streams*
+- [x] *Statische klassen uit 'System.IO'*
+- [x] *Streams*
 - [ ] *Serialisatie*
 
 #### 'Value' en 'Reference' types, cloning van objecten
@@ -125,8 +118,11 @@
 - [x] *Klasse declaratie*
 - [ ] *constructor overloading*
 - [ ] *Klasse-hiërarchie - subklasse - base-constructor*
-- [ ] *Klasse-hiërarchie - virtual methods - override*
-- [ ] *Abstracte klasse + implementatie*
+- [x] *Klasse-hiërarchie - virtual methods - override*
+- [x] *Abstracte klasse + implementatie*
+
+* Je klassehiërarchie is niet echt zinvol: er is maar één subklasse van een abstracte klasse.
+
 
 #### Structs
 
@@ -171,11 +167,12 @@
 
 --> Nog niet beoordeeld
 
-- [ ] *Tasks*
+- [x] *Tasks*
 - [ ] *Cross-thread' interactie vanuit een Task met de userinterface*
 - [ ] *Exceptions in Tasks*
 - [ ] *Parallel loops*
  
+
 #### Concurrent programming: Task synchronisation
 
 --> Nog niet beoordeeld
@@ -185,9 +182,11 @@
 
 #### Asynchronous programming: async .. await
 
---> Nog niet beoordeeld
+- [x] *async .. await*
 
-- [ ] *async .. await*
+* Gebruik enkel 'async void' methodes voor event-handlers. Gebruik in alle andere gevallen 'async Task' of 'async Task<T>' als returntype.
+* Het is geen good practice om een async methode op te roepen zonder dat je een 'await' doet van het resultaat.
+
 
 #### (Recursie)
 
