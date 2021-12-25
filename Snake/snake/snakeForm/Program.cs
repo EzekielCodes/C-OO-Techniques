@@ -7,11 +7,11 @@ namespace snakeForm
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
             
             ApplicationConfiguration.Initialize();
-            var game = new Game();
+            var game = await Game.Create();  
             Application.Run(new Form1(game));
         }
     }

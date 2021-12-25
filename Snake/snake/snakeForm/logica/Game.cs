@@ -6,7 +6,6 @@ namespace snakeForm.logica
     public class Game : IGame
 
     {
-
         public System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private int _width;
         public int Width
@@ -75,9 +74,17 @@ namespace snakeForm.logica
 
         public Dictionary<Enum, Action> DictMovement = new Dictionary<Enum, Action>();
         public String SourceFile = Properties.Resources.SourceFile;
+        private String _eventResult;
+        public String EventResult
+        {
+            get { return _eventResult; }
+            set { _eventResult = value; }
+        }
+        EventSubscriber _event = new EventSubscriber();
 
 
-        public Game()
+
+        private Game()
         {
             _width = 16;
             _height = 16;
@@ -90,6 +97,12 @@ namespace snakeForm.logica
             Snake = new List<Cirkel>();
             Food = new Cirkel(0,0);
             Bodypart = new Cirkel();
+            
+            DictMovement.Add(Directions.Left, Snake.SnakeLeft);
+            DictMovement.Add(Directions.Right, Snake.SnakeRight);
+            DictMovement.Add(Directions.Up, Snake.SnakeUp);
+            DictMovement.Add(Directions.Down, Snake.SnakeDown);
+
             //ReadFile();
             /*try
             {
@@ -101,41 +114,67 @@ namespace snakeForm.logica
             {
                 Console.WriteLine(ex.InnerExceptions);
             }*/
-                InitiazeSnake();
+            // await InitiazeSnake();
 
 
-            DictMovement.Add(Directions.Left, Snake.SnakeLeft);
-            DictMovement.Add(Directions.Right, Snake.SnakeRight);
-            DictMovement.Add(Directions.Up, Snake.SnakeUp);
-            DictMovement.Add(Directions.Down, Snake.SnakeDown);
 
         }
+        public static async Task<Game> Create()
+        {
+            var myClass = new Game();
+            await myClass.InitiazeSnake();
+            return myClass;
+        }
 
-        private async void InitiazeSnake()
+        private async Task InitiazeSnake()
         {
             
             timer.Interval = 100;
             _exit = false;
             _continue = false;
-            Start();
-            await Task.Run(() => {
+            Console.WriteLine("wait start");
+            await Start();
+            Console.WriteLine("stop start");
+
+            /*await Task.Run(() => {
                 Console.WriteLine("waiting");
                 ReadFile();
                 Console.WriteLine("done waiting for read");
-                });
-           
+                });*/
+
         }
 
-        public  void Start()
+        /*public async Task ReadFileAsync()
         {
-            
+            await Task.Run(() =>
+            {
+                Console.WriteLine("waiting");
+                ReadFile();
+                Console.WriteLine("done waiting for read");
+            });
+
+            // await ReadFile();
+        }*/
+
+        public async Task Start()
+        {
+            await ReadFile();
             Snake.Clear();
             Cirkel head = new Cirkel(17,17,16,16);
             Snake.Add(head);
             timer.Start();
             GenerateFood();
+            //_event.Message += PrintEvent();
+            //_event.StartProcess();
+
+           // Console.WriteLine(_eventResult);
+            
         }
 
+        public void  PrintEvent()
+        {
+            Console.WriteLine("done");
+        }
 
 
         public Cirkel GenerateFood()
@@ -154,7 +193,8 @@ namespace snakeForm.logica
                     return GenerateFood();
                 }
             }
-
+            //_eventResult = _event.Test_OnMessage("start GenerateFood");
+            Console.WriteLine(_eventResult);
             return Food = new Cirkel { X = randX, Y = randY };
         }
 
@@ -211,7 +251,7 @@ namespace snakeForm.logica
             return input switch
             {
                 '0' => () => Stop(),
-                '1' => new Game().Further,
+                '1' =>new Game().Further,
                 _ => () => Console.WriteLine("Invalid input")
             };
         }
@@ -238,11 +278,11 @@ namespace snakeForm.logica
         {
 
             Console.WriteLine("starten");
-            new Game().InitiazeSnake();
+            //await new Game().InitiazeSnake();
 
         }
 
-        public  void ReadFile()
+        public async Task ReadFile()
         {
             StreamReader sr = new StreamReader(SourceFile);
             try
