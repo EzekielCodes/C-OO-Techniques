@@ -103,21 +103,6 @@ namespace snakeForm.logica
             DictMovement.Add(Directions.Up, Snake.SnakeUp);
             DictMovement.Add(Directions.Down, Snake.SnakeDown);
 
-            //ReadFile();
-            /*try
-            {
-                var job = Task.Run(ReadFile);
-                job.Wait();
-
-            }
-            catch(AggregateException ex)
-            {
-                Console.WriteLine(ex.InnerExceptions);
-            }*/
-            // await InitiazeSnake();
-
-
-
         }
         public static async Task<Game> Create()
         {
@@ -136,25 +121,7 @@ namespace snakeForm.logica
             await Start();
             Console.WriteLine("stop start");
 
-            /*await Task.Run(() => {
-                Console.WriteLine("waiting");
-                ReadFile();
-                Console.WriteLine("done waiting for read");
-                });*/
-
         }
-
-        /*public async Task ReadFileAsync()
-        {
-            await Task.Run(() =>
-            {
-                Console.WriteLine("waiting");
-                ReadFile();
-                Console.WriteLine("done waiting for read");
-            });
-
-            // await ReadFile();
-        }*/
 
         public async Task Start()
         {
@@ -164,11 +131,6 @@ namespace snakeForm.logica
             Snake.Add(head);
             timer.Start();
             GenerateFood();
-            //_event.Message += PrintEvent();
-            //_event.StartProcess();
-
-           // Console.WriteLine(_eventResult);
-            
         }
 
         public void  PrintEvent()
@@ -301,11 +263,11 @@ namespace snakeForm.logica
                     }
                     catch (IOException e)
                     {
-                        Console.WriteLine($"The file could not be read { e.Message}");
+                        throw new IOException($"The file could not be read { e.Message}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Fout { ex.Message}");
+                        throw new Exception($"Fout { ex.Message}");
                     }
                     finally
                     {
@@ -317,7 +279,7 @@ namespace snakeForm.logica
             }
             catch (FileNotFoundException filenotfound)
             {
-                Console.WriteLine($"FIle not found{ filenotfound.Message}");
+                throw new FileNotFoundException($"FIle not found{ filenotfound.Message}");
             }
 
 
@@ -347,11 +309,11 @@ namespace snakeForm.logica
                     }
                     catch (IOException e)
                     {
-                        Console.WriteLine($"The file couldn't be written { e.Message}");
+                        throw new IOException($"The file couldn't be written { e.Message}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Fout { ex.Message}");
+                       throw new Exception($"Fout { ex.Message}");
                     }
                     finally
                     {
@@ -362,7 +324,8 @@ namespace snakeForm.logica
 
             catch (FileNotFoundException filenotfound)
             {
-                Console.WriteLine($"FIle not found{ filenotfound.Message}");
+               // Console.WriteLine();
+                throw new FileNotFoundException($"FIle not found{ filenotfound.Message}");
             }
 
 
