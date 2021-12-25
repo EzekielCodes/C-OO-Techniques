@@ -63,10 +63,10 @@ namespace snakeForm.logica
             _height = Height;
         }
 
-        public Cirkel(int X, int Y)
+        public Cirkel(int Xpoint, int Ypoint)
         {
-            X = _x;  
-            Y = _y;
+            _x = Xpoint;  
+            _y = Ypoint;
         }
 
         public Cirkel()

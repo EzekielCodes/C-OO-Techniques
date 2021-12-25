@@ -213,7 +213,7 @@ namespace snakeForm.logica
             return input switch
             {
                 '0' => () => Stop(),
-                '1' =>new Game().Further,
+                '1' =>Task.Run(() => new Game().Further).Wait,
                 _ => () => Console.WriteLine("Invalid input")
             };
         }
@@ -236,11 +236,11 @@ namespace snakeForm.logica
             GameStatus = true;
 
         }
-        private void Further()
+        private async Task Further()
         {
 
             Console.WriteLine("starten");
-            //await new Game().InitiazeSnake();
+            await new Game().InitiazeSnake();
 
         }
 
