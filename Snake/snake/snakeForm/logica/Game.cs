@@ -169,7 +169,8 @@ namespace snakeForm.logica
                 Console.WriteLine($"Thanks for playing. You had a score of: {Score}");
                 _continue = true;
                 PrintMenu();
-                string input = Console.ReadLine();
+                string input;
+                input = Console.ReadLine();
                 Console.WriteLine();
                 Console.WriteLine(input[0]);
                 GetuserChoice(input[0])();
@@ -256,7 +257,7 @@ namespace snakeForm.logica
                         String line;
                         while (!sr.EndOfStream)
                         {
-                            line = sr.ReadLine();
+                            line = await sr.ReadLineAsync();
                             ScoreList.Add(line);
                         }
                         Console.WriteLine(String.Join(" \n", ScoreList));

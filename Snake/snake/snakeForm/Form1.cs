@@ -20,7 +20,9 @@ namespace snakeForm
             _game.Start();
             
             //linq
-            labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
+            //labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
+            IEnumerable<String> Scorelist = _game.ScoreList.Where(p => p != null).OrderByDescending(p => p).ToList().Take(3);
+            labelHigh.Text = String.Join(" ", Scorelist);
 
         }
 

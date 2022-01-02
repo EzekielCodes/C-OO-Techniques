@@ -76,11 +76,8 @@ namespace snakeForm.logica
         }
 
 
-        public override string ToString()
-        {
-            return $"X value: {_x} , Y value {_y}";
-               
-        }
+        public override string ToString() => $"X value: {_x} , Y value {_y}";
+              
 
         public override String GetCordinate()
         {
