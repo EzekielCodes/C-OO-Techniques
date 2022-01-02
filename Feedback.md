@@ -4,6 +4,8 @@
 
 #### Algemeen 
 
+**Je code geeft build-errors! Los dat op voor je verdere scores vraagt (en doe geen commit van non-buildable code).
+
 #### Kennismaking Visual Studio 2019
 
 
@@ -56,7 +58,7 @@
 - [x] *try..catch..finally*
 - [x] *Je werpt bruikbare exceptions op wanneer je een foutsituatie detecteert die niet lokaal op een beter manier kan afgehandeld worden.*
 
-* Het is geen goed idee om vanuit de Logica ('Game') van een WinForms toepassing naar de console te schrijven (dat is user-interactie). Je vangt die exceptie dus beter op in je presentatielaag. 
+* Een exceptie opvangen om ze dan onmiddellijk weer op te gooien heeft niet zoveel zin.
 
 #### Enumerations
 
@@ -184,8 +186,9 @@
 
 - [x] *async .. await*
 
-* Gebruik enkel 'async void' methodes voor event-handlers. Gebruik in alle andere gevallen 'async Task' of 'async Task<T>' als returntype.
 * Het is geen good practice om een async methode op te roepen zonder dat je een 'await' doet van het resultaat.
+
+* De 'async' methode `ReadFile` is zelf niet echt asynchroon. Vervang daarin beter `sr.ReadLine')` door `await sr.ReadLineAsync();
 
 
 #### (Recursie)
