@@ -25,9 +25,9 @@ namespace snakeForm.logica
             return input;
         }
 
-        public String Test_OnMessagefailed(String Message)
+        public String Test_OnMessagefailed(String message)
         {
-            return "Didnt finish! check for error " + Message;
+            return "Didnt finish! check for error " + message;
             
         }
 
