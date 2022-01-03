@@ -118,7 +118,7 @@
 #### Klassen - klassehiërarchie
 
 - [x] *Klasse declaratie*
-- [ ] *constructor overloading*
+- [x] *constructor overloading*
 - [ ] *Klasse-hiërarchie - subklasse - base-constructor*
 - [x] *Klasse-hiërarchie - virtual methods - override*
 - [x] *Abstracte klasse + implementatie*
