@@ -214,7 +214,8 @@ namespace snakeForm.logica
             return input switch
             {
                 '0' => () => Stop(),
-                '1' =>Task.Run(() => new Game().Further).Wait,
+                '1' =>Task.Run(() => new Game().Further()).Wait,
+                '2' => () => Console.WriteLine(""),
                 _ => () => Console.WriteLine("Invalid input")
             };
         }
