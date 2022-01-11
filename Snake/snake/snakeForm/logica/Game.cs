@@ -80,7 +80,8 @@ namespace snakeForm.logica
             get { return _eventResult; }
             set { _eventResult = value; }
         }
-        EventSubscriber _event = new EventSubscriber();
+       // EventSubscriber _event = new EventSubscriber();
+        public event EventHandler OnDeadMessage;
 
 
 
@@ -125,6 +126,7 @@ namespace snakeForm.logica
 
         public async Task Start()
         {
+            OnDeadMessage += Message_OnDeadMessage;
             await ReadFile();
             Snake.Clear();
             Cirkel head = new Cirkel(17,17,16,16);
@@ -165,8 +167,8 @@ namespace snakeForm.logica
             if (Snake[0].X > 33 || Snake[0].Y > 33 || Snake[0].X < 0 || Snake[0].Y < 0)
             {
                 GameStatus = true;
-                WriteFile();
-                Console.WriteLine($"Thanks for playing. You had a score of: {Score}");
+                WriteFile();            
+                OnDeadMessage?.Invoke(this,EventArgs.Empty);
                 _continue = true;
                 PrintMenu();
                 string input;
@@ -175,7 +177,13 @@ namespace snakeForm.logica
                 Console.WriteLine(input[0]);
                 GetuserChoice(input[0])();
 
+
             }
+        }
+        private void Message_OnDeadMessage(Object sender, EventArgs e)
+        {
+           Console.WriteLine($"Thanks for playing. You had a score of: {Score}");
+            //MessageBox.Show($"Thanks for playing. You had a score of: {Score}");
         }
 
         public void Eat()
@@ -261,7 +269,6 @@ namespace snakeForm.logica
                             line = await sr.ReadLineAsync();
                             ScoreList.Add(line);
                         }
-                        Console.WriteLine(String.Join(" \n", ScoreList));
                     }
                     catch (IOException e)
                     {
@@ -276,15 +283,11 @@ namespace snakeForm.logica
                         if (sr != null) sr.Dispose();
                     }
                 }
-
-
             }
             catch (FileNotFoundException filenotfound)
             {
                 throw new FileNotFoundException($"FIle not found{ filenotfound.Message}");
             }
-
-
         }
 
         public void WriteFile()
@@ -295,10 +298,8 @@ namespace snakeForm.logica
                 ScoreList.Add(scoreConvert);
             }
             StreamWriter sw = new StreamWriter(SourceFile);
-
             try
             {
-
                 if (File.Exists(SourceFile))
                 {
                     try
@@ -307,7 +308,6 @@ namespace snakeForm.logica
                         {
                             sw.WriteLine(line);
                         }
-                        Console.WriteLine(String.Join(" \n", ScoreList));
                     }
                     catch (IOException e)
                     {
@@ -326,11 +326,11 @@ namespace snakeForm.logica
 
             catch (FileNotFoundException filenotfound)
             {
-               // Console.WriteLine();
                 throw new FileNotFoundException($"FIle not found{ filenotfound.Message}");
             }
 
-
         }
+
+         
     }
 }
