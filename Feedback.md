@@ -4,8 +4,6 @@
 
 #### Algemeen 
 
-**Je code geeft build-errors! Los dat op voor je verdere scores vraagt (en doe geen commit van non-buildable code).
-
 #### Kennismaking Visual Studio 2019
 
 
@@ -20,7 +18,6 @@
 - [x] *Je gebruikt 'atomaire' commits*
 - [x] *Je gebruikt zinvolle commit messages*
 
-* Je commits zijn niet (altijd) atomair: je hebt commits waarin je meerdere losstaande wijzigingen hebt gedaan.
 * Je commit-messages zouden nog iets concreter en specifieker kunnen zijn.
 
 #### Debugging
@@ -36,16 +33,8 @@
 - [ ] *Huisregels voor programmeerstijl volgen*
 
 * Je volgt niet altijd de regels voor naamgeving:
-  * Voor de naam van je project wordt PascalCasing gebruikt.
-  * Voor namen van publieke properties wordt PascalCasing gebruikt.
-  * Start de namen van private velden met een underscore (gevolgd door de naam in camelCasing).
   * Gebruik geen underscores in namen (pas de automatisch gegenereerde namen met underscores aan).
-  * Declareer slechts één variabele per lijn ('clean code').
-  * Kies zinvolle namen voor je grafische componenten (Form1)
 
-* Zet een enum-declaratie niet in hetzelfde bestand als een klasse-declaratie.
-* Hanteer de gevraagde volgorde voor de verschillende onderdelen van je klasse (properties na de velden en voor de constructor).
-* Gebruik voor alle velden, klassen, methodes, properties steeds access modifiers (public, private...).
 * Gebruik type inference ('var') volgens de conventie uit de stijlregels.
 * Je gebruikt 'Random' niet op een correcte manier. Gebruik per kalsse één instantie die je dan in je methodes telkens opnieuw gebruikt.
 * Vermijd overbodige blanco lijnen (bv. twee achter elkaar of een blanco lijn tussen twee accolades).
@@ -158,12 +147,8 @@
 
 #### Events
 
-- [ ] *Event 'Publisher'*
+- [x] *Event 'Publisher'*
 - [x] *Event 'Consumer'*
-
-* Je reageert op externe events maar nog niet op eigen events die vanuit je eigen code gestart worden.
-
-20/12/2021: wat is hier gewijzigd ten opzichte van de vorige feedback?
 
 #### Concurrent programmatie: Tasks
 

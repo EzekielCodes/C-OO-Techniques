@@ -46,7 +46,6 @@ namespace snakeForm
                     _game.Snake[i].Y * _game.Height,
                     _game.Width, _game.Height));
                 }
-                
             }
 
             
