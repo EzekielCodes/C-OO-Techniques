@@ -12,7 +12,7 @@ namespace snakeForm
             
             ApplicationConfiguration.Initialize();
             var game = await Game.Create();  
-            Application.Run(new Form1(game));
+            Application.Run(new SnakeGame(game));
         }
     }
 }

@@ -73,7 +73,7 @@ namespace snakeForm.logica
         public Cirkel Food { get; set; }
 
         public Dictionary<Enum, Action> DictMovement = new Dictionary<Enum, Action>();
-        public String SourceFile = Properties.Resources.SourceFile;
+        public String SourceFile = SnakeForm.Properties.Resources.SourceFile;
         private String _eventResult;
         public String EventResult
         {

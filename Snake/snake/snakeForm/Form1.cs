@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace snakeForm
 {
-    public partial class Form1 : Form
+    public partial class SnakeGame : Form
     {
         private readonly IGame _game;
         private bool _goLeft;
@@ -11,7 +11,7 @@ namespace snakeForm
         private bool _goUp;
         private bool _goDown;
      
-        public Form1(IGame game)
+        public SnakeGame(IGame game)
         {         
             InitializeComponent();
             _game = game;
@@ -64,10 +64,8 @@ namespace snakeForm
             if (_game.GameStatus == true && _game.Exit == true)
             {
                 this.Close();
-                Application.Exit();
-                
+                Application.Exit();               
             }
-
             else if (_game.Conitnue == true && _game.GameStatus == true)
             {
                 this.Close();
