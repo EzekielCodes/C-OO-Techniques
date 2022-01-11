@@ -10,23 +10,22 @@ namespace snakeForm.logica
     public static class ExtensionClass
     {
         
-       public static void SnakeLeft(this List<Cirkel> Snake)
+       public static void SnakeLeft(this List<Cirkel> snake)
         {
-            Snake[0].X--;
+            snake[0].X--;
             
         }
-        public static void SnakeRight(this List<Cirkel> Snake)
+        public static void SnakeRight(this List<Cirkel> snake)
         {
-            Snake[0].X++;
+            snake[0].X++;
         }
-        public static void SnakeUp(this List<Cirkel> Snake)
+        public static void SnakeUp(this List<Cirkel> snake)
         {
-            Snake[0].Y--;
+            snake[0].Y--;
         }
-        public static void SnakeDown(this List<Cirkel> Snake)
+        public static void SnakeDown(this List<Cirkel> snake)
         {
-            Snake[0].Y++;
+            snake[0].Y++;
         }
-
     }
 }

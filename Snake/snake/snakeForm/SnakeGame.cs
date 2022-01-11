@@ -21,7 +21,7 @@ namespace snakeForm
             
             //linq
             //labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
-            IEnumerable<String> Scorelist = _game.ScoreList.Where(p => p != null).OrderByDescending(p => p).ToList().Take(3);
+            var Scorelist = _game.ScoreList.Where(p => p != null).OrderByDescending(p => p).ToList().Take(3);
             labelHigh.Text = String.Join(" ", Scorelist);
 
         }
@@ -29,7 +29,7 @@ namespace snakeForm
         
         private void RefreshGraphics(object sender, PaintEventArgs e)
         {
-            Graphics canvasGraphics = e.Graphics;
+            var canvasGraphics = e.Graphics;
             for (int i = 0; i < _game.Snake.Count; i++)
             {
                 if (i == 0)
@@ -45,8 +45,7 @@ namespace snakeForm
                     new Rectangle(_game.Snake[i].X * _game.Width,
                     _game.Snake[i].Y * _game.Height,
                     _game.Width, _game.Height));
-                }
-                
+                }   
             }
 
             
@@ -55,26 +54,24 @@ namespace snakeForm
                     _game.Food.Y * _game.Height,
                     _game.Width, _game.Height));
 
-            
-
         }
 
         private void GameTimerTick(object sender, EventArgs e)
         {
             if (_game.GameStatus == true && _game.Exit == true)
             {
-                this.Close();
+                Close();
                 Application.Exit();               
             }
             else if (_game.Conitnue == true && _game.GameStatus == true)
             {
-                this.Close();
+                Close();
                 Application.Restart();
             }
 
             else if(_game.GameStatus == true)
             {
-                this.Close();
+                Close();
                 Application.Exit();
                 
             }
@@ -103,7 +100,7 @@ namespace snakeForm
             canvasMain.Invalidate();
         }
 
-        private void Form1KeyUp(object sender, KeyEventArgs e)
+        private void FormKeyUp(object sender, KeyEventArgs e)
         {
            
             if (e.KeyCode == Keys.Left)
@@ -121,11 +118,10 @@ namespace snakeForm
             if (e.KeyCode == Keys.Down)
             {
                 _goDown = false;
-            }
-           
+            } 
         }
 
-        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void FormPreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             
             if (e.KeyCode == Keys.Left && _game.Direction != Directions.Right)
@@ -145,7 +141,5 @@ namespace snakeForm
                 _goDown = true;
             }
         }
-
-       
     }
 }

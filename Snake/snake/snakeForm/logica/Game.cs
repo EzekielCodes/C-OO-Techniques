@@ -6,19 +6,11 @@ namespace snakeForm.logica
     public class Game : IGame
 
     {
-        public System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-        private int _width;
-        public int Width
-        {
-            get { return _width; }
-            set { _width = value; }
-        }
-        private int _height;
-        public int Height
-        {
-            get { return _height; }
-            set { _height = value; }
-        }
+        public System.Windows.Forms.Timer timer = new();
+
+        public int Width { get; set; }
+
+        public int Height { get; set; }
         private int _speed;
         public int Speed
         {
@@ -28,7 +20,6 @@ namespace snakeForm.logica
                 if (value >= 0) throw new ArgumentException("Speed lager dan 0");
                 _speed = value;
             }
-
         }
         private int _score;
         public int Score
@@ -40,60 +31,33 @@ namespace snakeForm.logica
                 _score = value;
             }
         }
-        private bool _gameStatus;
-        public bool GameStatus
-        {
-            get { return _gameStatus; }
-            set { _gameStatus = value; }
-        }
-        private Directions _direction;
-        public Directions Direction
-        {
-            get { return _direction; }
-            set { _direction = value; }
-        }
+
+        public bool GameStatus { get; set; }
+
+        public Directions Direction { get; set; }
         public Cirkel Bodypart { get; set; }
-
-        private bool _exit;
-        public bool Exit
-        {
-            get { return _exit; }
-            set { _exit = value; }
-        }
-
-        private bool _continue;
-        public bool Conitnue
-        {
-            get { return _continue; }
-            set { _continue = value; }
-        }
+        public bool Exit { get; set; }
+        public bool Conitnue { get; set; }
 
         public List<Cirkel> Snake { get; set; }
         public List<string> ScoreList { get; set; }
         public Cirkel Food { get; set; }
 
-        public Dictionary<Enum, Action> DictMovement = new Dictionary<Enum, Action>();
+        public Dictionary<Enum, Action> DictMovement = new();
         public String SourceFile = SnakeForm.Properties.Resources.SourceFile;
-        private String _eventResult;
-        public String EventResult
-        {
-            get { return _eventResult; }
-            set { _eventResult = value; }
-        }
-       // EventSubscriber _event = new EventSubscriber();
+
+        public String EventResult { get; set; }
+
         public event EventHandler OnDeadMessage;
-
-
-
         private Game()
         {
-            _width = 16;
-            _height = 16;
+            Width = 16;
+            Height = 16;
             _speed = 15;
             _score = 0;
-            _direction = Directions.Left;
-            _exit = false;
-            _continue = false;
+            Direction = Directions.Left;
+            Exit = false;
+            Conitnue = false;
             ScoreList = new List<String>();
             Snake = new List<Cirkel>();
             Food = new Cirkel(0,0);
@@ -116,8 +80,8 @@ namespace snakeForm.logica
         {
             
             timer.Interval = 100;
-            _exit = false;
-            _continue = false;
+            Exit = false;
+            Conitnue = false;
             Console.WriteLine("wait start");
             await Start();
             Console.WriteLine("stop start");
@@ -129,21 +93,17 @@ namespace snakeForm.logica
             OnDeadMessage += Message_OnDeadMessage;
             await ReadFile();
             Snake.Clear();
-            Cirkel head = new Cirkel(17,17,16,16);
+            var head = new Cirkel(17,17,16,16);
             Snake.Add(head);
             timer.Start();
             GenerateFood();
         }
 
-        public void  PrintEvent()
-        {
-            Console.WriteLine("done");
-        }
-
+     
 
         public Cirkel GenerateFood()
         {
-            Random random = new Random();
+            var random = new Random();
             int randX = random.Next(0, 33);
             int randY = random.Next(0, 33);
 
@@ -158,7 +118,7 @@ namespace snakeForm.logica
                 }
             }
             //_eventResult = _event.Test_OnMessage("start GenerateFood");
-            Console.WriteLine(_eventResult);
+            Console.WriteLine(EventResult);
             return Food = new Cirkel { X = randX, Y = randY };
         }
 
@@ -169,14 +129,13 @@ namespace snakeForm.logica
                 GameStatus = true;
                 WriteFile();            
                 OnDeadMessage?.Invoke(this,EventArgs.Empty);
-                _continue = true;
+                Conitnue = true;
                 PrintMenu();
                 string input;
                 input = Console.ReadLine();
                 Console.WriteLine();
                 Console.WriteLine(input[0]);
                 GetuserChoice(input[0])();
-
 
             }
         }
@@ -191,7 +150,7 @@ namespace snakeForm.logica
             if (Snake[0].X == Food.X && Snake[0].Y == Food.Y)
             {
                 Score += 1;
-                Bodypart = new Cirkel { X = Snake[Snake.Count - 1].X + 1, Y = Snake[Snake.Count - 1].Y + 1 };
+                Bodypart = new Cirkel { X = Snake[^1].X + 1, Y = Snake[^1].Y + 1 };
                 Snake.Add(Bodypart);
                 GenerateFood();
 
@@ -241,7 +200,7 @@ namespace snakeForm.logica
         public void Stop()
 
         {
-            _exit = true;
+            Exit = true;
             timer.Stop();
             GameStatus = true;
 
@@ -256,7 +215,7 @@ namespace snakeForm.logica
 
         public async Task ReadFile()
         {
-            StreamReader sr = new StreamReader(SourceFile);
+            var sr = new StreamReader(SourceFile);
             try
             {
                 if (File.Exists(SourceFile))
@@ -297,7 +256,7 @@ namespace snakeForm.logica
             {
                 ScoreList.Add(scoreConvert);
             }
-            StreamWriter sw = new StreamWriter(SourceFile);
+            var sw = new StreamWriter(SourceFile);
             try
             {
                 if (File.Exists(SourceFile))
@@ -328,9 +287,6 @@ namespace snakeForm.logica
             {
                 throw new FileNotFoundException($"FIle not found{ filenotfound.Message}");
             }
-
-        }
-
-         
+        }     
     }
 }

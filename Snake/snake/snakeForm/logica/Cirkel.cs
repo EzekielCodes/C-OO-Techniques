@@ -8,26 +8,8 @@ namespace snakeForm.logica
 {
     public class Cirkel:Figuur
     {
-        private int _x;
-        public int X
-        {
-            get { 
-                return _x;
-            }
-            set {
-                _x = value;
-            }
-        }
-        private int _y;
-        public int Y
-        {
-            get { 
-                return _y; 
-            }
-            set { 
-                _y = value;
-            }
-        }
+        public int X { get; set; }
+        public int Y { get; set; }
         private int _width;
         public override int Width
         {
@@ -40,7 +22,6 @@ namespace snakeForm.logica
                 _width = value;
             }
         }
-
 
         private int _height;
         public override int Height 
@@ -57,31 +38,29 @@ namespace snakeForm.logica
 
         public Cirkel(int x, int y, int height, int width)
         {
-            _x = x;
-            _y = y;
+            X = x;
+            Y = y;
             _width = width;
             _height = height;
         }
 
         public Cirkel(int xpoint, int ypoint)
         {
-            _x = xpoint;  
-            _y = ypoint;
+            X = xpoint;  
+            Y = ypoint;
         }
 
         public Cirkel()
         {
-            _x = 0;
-            _y = 0;
+            X = 0;
+            Y = 0;
         }
 
-
-        public override string ToString() => $"X value: {_x} , Y value {_y}";
+        public override string ToString() => $"X value: {X} , Y value {Y}";
               
-
         public override String GetCordinate()
         {
-            String result = "Xcordinate "+ _x + " Ycordinate " + _y; 
+            String result = "Xcordinate "+ X + " Ycordinate " + Y; 
             return result;
         }
     }
