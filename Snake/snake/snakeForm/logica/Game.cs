@@ -49,6 +49,10 @@ namespace snakeForm.logica
         public String EventResult { get; set; }
 
         public event EventHandler OnDeadMessage;
+
+        private readonly Random random = new ();
+        private int _randX;
+        private int _randY;
         private Game()
         {
             Width = 16;
@@ -103,23 +107,23 @@ namespace snakeForm.logica
 
         public Cirkel GenerateFood()
         {
-            var random = new Random();
-            int randX = random.Next(0, 33);
-            int randY = random.Next(0, 33);
+            
+            _randX = random.Next(0, 33);
+            _randY = random.Next(0, 33);
 
-            if ((randX == 0) && (randY == 0))
+            if ((_randX == 0) && (_randY == 0))
                 return new Cirkel { X = 1, Y = 1 };
 
             for (int i = 0; i < Snake.Count; i++)
             {
-                if ((Snake[i].X == randX) && (Snake[i].Y == randY))
+                if ((Snake[i].X == _randX) && (Snake[i].Y == _randY))
                 {
                     return GenerateFood();
                 }
             }
             //_eventResult = _event.Test_OnMessage("start GenerateFood");
             Console.WriteLine(EventResult);
-            return Food = new Cirkel { X = randX, Y = randY };
+            return Food = new Cirkel { X = _randX, Y = _randY };
         }
 
         public void Dood()
