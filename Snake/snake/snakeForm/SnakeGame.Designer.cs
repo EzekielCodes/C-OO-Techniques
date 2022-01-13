@@ -95,8 +95,8 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SnakeGame";
             this.Text = "SnakeGame";
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1KeyUp);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.Form1_PreviewKeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormKeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.FormPreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.canvasMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

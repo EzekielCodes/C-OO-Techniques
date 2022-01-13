@@ -45,8 +45,7 @@ namespace snakeForm
                     new Rectangle(_game.Snake[i].X * _game.Width,
                     _game.Snake[i].Y * _game.Height,
                     _game.Width, _game.Height));
-                }
-                
+                }  
             }
 
             
