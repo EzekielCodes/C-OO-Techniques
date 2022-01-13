@@ -106,8 +106,7 @@ namespace snakeForm.logica
      
 
         public Cirkel GenerateFood()
-        {
-            
+        {          
             _randX = random.Next(0, 33);
             _randY = random.Next(0, 33);
 
