@@ -11,7 +11,6 @@ namespace snakeForm
         private bool _goRight;
         private bool _goUp;
         private bool _goDown;
-        private Score _myscore = new();
      
         public SnakeGame(IGame game)
         {         

@@ -11,7 +11,7 @@ public class Score
 {
  
     public String SourceFile = SnakeForm.Properties.Resources.SourceFile;
-    public List<string> ScoreList = new List<string>();
+    public List<string> ScoreList = new();
     private int _points;
     public int Points
     {
@@ -42,7 +42,6 @@ public class Score
                             {
                                 ScoreList.Add(_line);
                             }
-                            
                         }
                     }
                     //Console.WriteLine(String.Join(" ",ScoreList));

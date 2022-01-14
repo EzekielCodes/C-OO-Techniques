@@ -39,7 +39,6 @@ namespace snakeForm.logica
 
         public List<Cirkel> Snake { get; set; }
         public List<string> ScoreList { get; set; }
-        public List<string> ScoreLi = new List<string>();
         public Cirkel Food { get; set; }
 
         public Dictionary<Enum, Action> DictMovement = new();
