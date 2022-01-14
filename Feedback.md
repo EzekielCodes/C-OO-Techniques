@@ -30,16 +30,7 @@
 
 #### Programmeerstijl
 
-- [ ] *Huisregels voor programmeerstijl volgen*
-
-* Je volgt niet altijd de regels voor naamgeving:
-  * Gebruik geen underscores in namen (pas de automatisch gegenereerde namen met underscores aan).
-
-* Gebruik type inference ('var') volgens de conventie uit de stijlregels.
-* Je gebruikt 'Random' niet op een correcte manier. Gebruik per kalsse één instantie die je dan in je methodes telkens opnieuw gebruikt.
-* Vermijd overbodige blanco lijnen (bv. twee achter elkaar of een blanco lijn tussen twee accolades).
-
-* Tip: hou rekening met de messages en warnings uit de 'Error List'.
+- [x] *Huisregels voor programmeerstijl volgen*
 
 #### Exceptions
 
@@ -88,7 +79,7 @@
 - [ ] *Klasseblibliotheken*
 - [x] *Meerlagenmodel - 3lagenmodel*
 - [x] *'Loose coupling' - dependency injection*
-- [ ] *Interface gebruiken als scheiding tussen architectuurlagen*
+- [x] *Interface gebruiken als scheiding tussen architectuurlagen*
 
 * Je hebt nog geen datalaag?
 
