@@ -16,11 +16,10 @@
         void Dood();
         void Eat();
         Cirkel GenerateFood();
-        Task ReadFile();
+        
         void SnakeMovement();
         Task Start();
         void Stop();
-        void WriteFile();
-        //static Task<Game> Create();
+        
     }
 }

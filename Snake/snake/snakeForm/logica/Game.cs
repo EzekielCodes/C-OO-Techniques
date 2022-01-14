@@ -97,7 +97,13 @@ namespace snakeForm.logica
             
             OnDeadMessage += Message_OnDeadMessage;
             await _myscore.ReadFile();
-            ScoreList.AddRange(_myscore.ScoreList);
+            for (int i = 0; i < _myscore.ScoreList.Count; i++)
+            {
+                if (!ScoreList.Contains(_myscore.ScoreList[i]))
+                {
+                    ScoreList.Add(_myscore.ScoreList[i]);
+                }                
+            }
             //await ReadFile();
             Snake.Clear();
             var head = new Cirkel(17,17,16,16);
@@ -220,81 +226,5 @@ namespace snakeForm.logica
             await new Game().InitiazeSnake();
 
         }
-
-        public async Task ReadFile()
-        {
-            var sr = new StreamReader(SourceFile);
-            try
-            {
-                if (File.Exists(SourceFile))
-                {
-                    try
-                    {
-                        String line;
-                        while (!sr.EndOfStream)
-                        {
-                            line = await sr.ReadLineAsync();
-                            ScoreList.Add(line);
-                        }
-                    }
-                    catch (IOException e)
-                    {
-                        throw new IOException($"The file could not be read { e.Message}");
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception($"Fout { ex.Message}");
-                    }
-                    finally
-                    {
-                        if (sr != null) sr.Dispose();
-                    }
-                }
-            }
-            catch (FileNotFoundException filenotfound)
-            {
-                throw new FileNotFoundException($"FIle not found{ filenotfound.Message}");
-            }
-        }
-
-        public void WriteFile()
-        {
-            String scoreConvert = Convert.ToString(Score);
-            if (!ScoreList.Contains(scoreConvert))
-            {
-                ScoreList.Add(scoreConvert);
-            }
-            var sw = new StreamWriter(SourceFile);
-            try
-            {
-                if (File.Exists(SourceFile))
-                {
-                    try
-                    {
-                        foreach (String line in ScoreList)
-                        {
-                            sw.WriteLine(line);
-                        }
-                    }
-                    catch (IOException e)
-                    {
-                        throw new IOException($"The file couldn't be written { e.Message}");
-                    }
-                    catch (Exception ex)
-                    {
-                       throw new Exception($"Fout { ex.Message}");
-                    }
-                    finally
-                    {
-                        if (sw != null) sw.Dispose();
-                    }
-                }
-            }
-
-            catch (FileNotFoundException filenotfound)
-            {
-                throw new FileNotFoundException($"FIle not found{ filenotfound.Message}");
-            }
-        }     
     }
 }
