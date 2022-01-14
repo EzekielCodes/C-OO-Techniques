@@ -13,7 +13,6 @@
         public List<Cirkel> Snake { get; set; }
         public List<String> ScoreList { get; set; }
         public Cirkel Food { get; set; }
-
         void Dood();
         void Eat();
         Cirkel GenerateFood();

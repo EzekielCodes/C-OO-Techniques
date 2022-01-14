@@ -39,6 +39,7 @@ namespace snakeForm.logica
 
         public List<Cirkel> Snake { get; set; }
         public List<string> ScoreList { get; set; }
+        public List<string> ScoreLi = new List<string>();
         public Cirkel Food { get; set; }
 
         public Dictionary<Enum, Action> DictMovement = new();
@@ -51,7 +52,7 @@ namespace snakeForm.logica
         private readonly Random _random = new ();
         private int _randX;
         private int _randY;
-        readonly Score _myscore = new();
+        public Score _myscore = new();
         private Game()
         {
             Width = 16;
@@ -94,8 +95,10 @@ namespace snakeForm.logica
 
         public async Task Start()
         {
+            
             OnDeadMessage += Message_OnDeadMessage;
             await _myscore.ReadFile();
+            ScoreList.AddRange(_myscore.ScoreList);
             //await ReadFile();
             Snake.Clear();
             var head = new Cirkel(17,17,16,16);

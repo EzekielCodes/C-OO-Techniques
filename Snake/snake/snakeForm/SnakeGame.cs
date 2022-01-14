@@ -20,11 +20,11 @@ namespace snakeForm
             gameTimer.Interval = 100;
             gameTimer.Start();
             _game.Start();
-            
+            //_game.sc
             //linq
             //labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
-            var Scorelist = _myscore.ScoreList.Where(p => p != null).OrderByDescending(p => p).ToList().Take(3);
-            Console.WriteLine(String.Join(" ", _myscore.ScoreList));
+            var Scorelist = _game.ScoreList.Where(p => p != null).OrderByDescending(p => p).ToList().Take(3);
+            Console.WriteLine(String.Join(" ", _game.ScoreList));
             //Console.WriteLine(_myscore.ScoreList);   
             labelHigh.Text = String.Join(" ", Scorelist);
 
