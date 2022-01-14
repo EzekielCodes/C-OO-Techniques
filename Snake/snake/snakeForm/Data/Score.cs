@@ -11,7 +11,7 @@ public class Score
 {
  
     public String SourceFile = SnakeForm.Properties.Resources.SourceFile;
-    public List<string> ScoreList { get; set; }
+    public List<string> ScoreList = new List<string>();
     private int _points;
     public int Points
     {
@@ -38,10 +38,14 @@ public class Score
                         line = await sr.ReadLineAsync();
                         if (!String.IsNullOrEmpty(line))
                         {
+                            if (!ScoreList.Contains(line))
+                            {
+                                ScoreList.Add(line);
+                            }
                             
-                            ScoreList.Add(line);
                         }
                     }
+                    //Console.WriteLine(String.Join(" ",ScoreList));
                 }
                 catch (IOException e)
                 {
@@ -70,17 +74,20 @@ public class Score
         {
             ScoreList.Add(scoreConvert);
         }
+        Console.WriteLine(String.Join(" ", ScoreList));
         var sw = new StreamWriter(SourceFile);
+
         try
         {
             if (File.Exists(SourceFile))
             {
                 try
                 {
-                    foreach (String line in ScoreList)
+                    foreach (String s in ScoreList)
                     {
-                        sw.WriteLine(line);
+                        sw.WriteLine(s);
                     }
+                    sw.Close();
                 }
                 catch (IOException e)
                 {

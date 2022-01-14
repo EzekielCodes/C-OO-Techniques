@@ -1,4 +1,5 @@
 using snakeForm.logica;
+using SnakeForm.Data;
 using System.Diagnostics;
 
 namespace snakeForm
@@ -10,6 +11,7 @@ namespace snakeForm
         private bool _goRight;
         private bool _goUp;
         private bool _goDown;
+        private Score _myscore = new();
      
         public SnakeGame(IGame game)
         {         
@@ -21,7 +23,9 @@ namespace snakeForm
             
             //linq
             //labelHigh.Text = String.Join(" ", _game.ScoreList.OrderByDescending(p => p).ToList().Take(3));
-            var Scorelist = _game.ScoreList.Where(p => p != null).OrderByDescending(p => p).ToList().Take(3);
+            var Scorelist = _myscore.ScoreList.Where(p => p != null).OrderByDescending(p => p).ToList().Take(3);
+            Console.WriteLine(String.Join(" ", _myscore.ScoreList));
+            //Console.WriteLine(_myscore.ScoreList);   
             labelHigh.Text = String.Join(" ", Scorelist);
 
         }

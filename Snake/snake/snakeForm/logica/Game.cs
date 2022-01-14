@@ -95,8 +95,8 @@ namespace snakeForm.logica
         public async Task Start()
         {
             OnDeadMessage += Message_OnDeadMessage;
-            //await _myscore.ReadFile();
-            await ReadFile();
+            await _myscore.ReadFile();
+            //await ReadFile();
             Snake.Clear();
             var head = new Cirkel(17,17,16,16);
             Snake.Add(head);
@@ -131,8 +131,9 @@ namespace snakeForm.logica
             if (Snake[0].X > 33 || Snake[0].Y > 33 || Snake[0].X < 0 || Snake[0].Y < 0)
             {
                 GameStatus = true;
-                //_myscore.WriteFile();
-                WriteFile();            
+                _myscore.Points = Score;
+                _myscore.WriteFile();
+                //WriteFile();            
                 OnDeadMessage?.Invoke(this,EventArgs.Empty);
                 Conitnue = true;
                 PrintMenu();
