@@ -33,6 +33,7 @@ namespace snakeForm
         
         private void RefreshGraphics(object sender, PaintEventArgs e)
         {
+
             var canvasGraphics = e.Graphics;
             for (int i = 0; i < _game.Snake.Count; i++)
             {

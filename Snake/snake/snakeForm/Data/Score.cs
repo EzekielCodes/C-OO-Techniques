@@ -22,7 +22,7 @@ public class Score
             _points = value;
         }
     }
-    String line = "";
+    private String _line = "";
     public async Task ReadFile()
     {
         var sr = new StreamReader(SourceFile);
@@ -35,12 +35,12 @@ public class Score
                     
                     while (!sr.EndOfStream)
                     {
-                        line = await sr.ReadLineAsync();
-                        if (!String.IsNullOrEmpty(line))
+                        _line = await sr.ReadLineAsync();
+                        if (!String.IsNullOrEmpty(_line))
                         {
-                            if (!ScoreList.Contains(line))
+                            if (!ScoreList.Contains(_line))
                             {
-                                ScoreList.Add(line);
+                                ScoreList.Add(_line);
                             }
                             
                         }
