@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using SnakeForm.Data;
 namespace snakeForm.logica
 {
     public class Game : IGame
@@ -50,9 +48,10 @@ namespace snakeForm.logica
 
         public event EventHandler OnDeadMessage;
 
-        private readonly Random random = new ();
+        private readonly Random _random = new ();
         private int _randX;
         private int _randY;
+        readonly Score _myscore = new();
         private Game()
         {
             Width = 16;
@@ -75,6 +74,7 @@ namespace snakeForm.logica
         }
         public static async Task<Game> Create()
         {
+            
             var myClass = new Game();
             await myClass.InitiazeSnake();
             return myClass;
@@ -95,6 +95,7 @@ namespace snakeForm.logica
         public async Task Start()
         {
             OnDeadMessage += Message_OnDeadMessage;
+            //await _myscore.ReadFile();
             await ReadFile();
             Snake.Clear();
             var head = new Cirkel(17,17,16,16);
@@ -107,8 +108,8 @@ namespace snakeForm.logica
 
         public Cirkel GenerateFood()
         {          
-            _randX = random.Next(0, 33);
-            _randY = random.Next(0, 33);
+            _randX = _random.Next(0, 33);
+            _randY = _random.Next(0, 33);
 
             if ((_randX == 0) && (_randY == 0))
                 return new Cirkel { X = 1, Y = 1 };
@@ -130,6 +131,7 @@ namespace snakeForm.logica
             if (Snake[0].X > 33 || Snake[0].Y > 33 || Snake[0].X < 0 || Snake[0].Y < 0)
             {
                 GameStatus = true;
+                //_myscore.WriteFile();
                 WriteFile();            
                 OnDeadMessage?.Invoke(this,EventArgs.Empty);
                 Conitnue = true;
