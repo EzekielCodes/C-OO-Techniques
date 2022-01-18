@@ -22,11 +22,9 @@
 
 #### Debugging
 
---> Nog niet beoordeeld (kan enkel interactief gebeuren)
-
-- [ ] *Code stap voor stap uitvoeren*
-- [ ] *Breakpoints*
-- [ ] *De waarde van variabelen bekijken tijdens de uitvoering van je programma*
+- [x] *Code stap voor stap uitvoeren*
+- [x] *Breakpoints*
+- [x] *De waarde van variabelen bekijken tijdens de uitvoering van je programma*
 
 #### Programmeerstijl
 
@@ -43,9 +41,6 @@
 #### Enumerations
 
 - [x] *Declaratie en gebruik van enum-type*
-
-* Zet een enum-declaratie niet in hetzelfde bestand als een klasse-declaratie (maar wel in een afzonderlijk bestand).
-
 
 #### Properties
 
@@ -80,8 +75,6 @@
 - [x] *Meerlagenmodel - 3lagenmodel*
 - [x] *'Loose coupling' - dependency injection*
 - [x] *Interface gebruiken als scheiding tussen architectuurlagen*
-
-* Je hebt nog geen datalaag?
 
 #### Bestanden en 'streams'
 
@@ -161,11 +154,6 @@
 #### Asynchronous programming: async .. await
 
 - [x] *async .. await*
-
-* Het is geen good practice om een async methode op te roepen zonder dat je een 'await' doet van het resultaat.
-
-* De 'async' methode `ReadFile` is zelf niet echt asynchroon. Vervang daarin beter `sr.ReadLine')` door `await sr.ReadLineAsync();
-
 
 #### (Recursie)
 
